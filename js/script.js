@@ -1,16 +1,135 @@
-document.addEventListener('DOMContentLoaded', function() {
-   
-    // Fungsi untuk carousel
-    function initializeCarousel() {
-        const slides = document.querySelectorAll('.carousel-slide');
-        const dots = document.querySelectorAll('.dot');
-        const prevButton = document.querySelector('.prev');
-        const nextButton = document.querySelector('.next');
-        let currentSlide = 0;
 
-        function showSlide(n) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
+// Fungsi untuk navbar scroll
+function handleNavbarScroll() {
+    const navbar = document.querySelector('.navbar');
+    const header = document.querySelector('.header');
+    const headerBottom = header.offsetTop + header.offsetHeight;
+    const bookNowBtn = document.querySelector('.book-now-container');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > headerBottom - navbar.offsetHeight) {
+            navbar.classList.add('scrolled');
+            bookNowBtn.classList.add('visible');
+        } else {
+            navbar.classList.remove('scrolled');
+            bookNowBtn.classList.remove('visible');
+        }
+    });
+
+    // Set initial state
+    if (window.scrollY > headerBottom - navbar.offsetHeight) {
+        navbar.classList.add('scrolled');
+        bookNowBtn.classList.add('visible');
+    } else {
+        bookNowBtn.classList.remove('visible');
+    }
+}
+
+// Fungsi untuk smooth scroll
+function handleSmoothScroll() {
+    const navLinks = document.querySelectorAll('.nav-links a, .logo-left a');
+    const navHeight = document.querySelector('.navbar').offsetHeight;
+
+    function smoothScrollTo(targetId) {
+        const targetSection = document.querySelector(targetId);
+        let targetPosition;
+        
+        if (targetId === '#home') {
+            targetPosition = 0;
+        } else {
+            targetPosition = targetSection.offsetTop - navHeight;
+        }
+
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
+    }
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            smoothScrollTo(targetId);
+        });
+    });
+}
+
+// Fungsi untuk menu burger
+function handleBurgerMenu() {
+    const burgerMenu = document.querySelector('.burger-menu');
+    const navLinks = document.querySelector('.nav-links');
+    const overlay = document.querySelector('.nav-overlay');
+    const navItems = document.querySelectorAll('.nav-links a');
+    const closeButton = document.createElement('button');
+    
+    closeButton.innerHTML = '×';
+    closeButton.className = 'close-menu-btn';
+    navLinks.insertBefore(closeButton, navLinks.firstChild);
+
+    function toggleMenu() {
+        const isOpening = !navLinks.classList.contains('active');
+        const bookNowBtn = document.querySelector('.book-now-container');
+        
+        if (isOpening) {
+            // Ensure Book Now button stays visible if it was visible
+            if (bookNowBtn.classList.contains('visible')) {
+                bookNowBtn.style.zIndex = '100';
+            }
+        } else {
+            bookNowBtn.style.zIndex = '';
+        }
+
+        burgerMenu.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        overlay.classList.toggle('active');
+    }
+
+    // Event listeners
+    burgerMenu.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
+    closeButton.addEventListener('click', toggleMenu);
+
+    // Event listener untuk navlinks
+    navItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = item.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            const navHeight = document.querySelector('.navbar').offsetHeight;
+            
+            // Scroll to target
+            let targetPosition;
+            if (targetId === '#home') {
+                targetPosition = 0;
+            } else {
+                targetPosition = targetSection.offsetTop - navHeight;
+            }
+
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        });
+    });
+}
+
+// Fungsi untuk carousel (existing code)
+function initializeCarousel() {
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.dot');
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+    let currentSlide = 0;
+
+    // Fungsi untuk menampilkan slide
+    function showSlide(n) {
+
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
 
             let newSlide;
             if (n >= slides.length) {
@@ -22,27 +141,52 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             currentSlide = newSlide;
 
-            slides[currentSlide].classList.add('active');
-            dots[currentSlide].classList.add('active');
-        }
 
-        prevButton.addEventListener('click', () => {
-            showSlide(currentSlide - 1);
-        });
+        // Hapus kelas active dari semua slide dan dot
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+
+        // Reset ke slide pertama jika mencapai batas
+        currentSlide = n >= slides.length ? 0 : n < 0 ? slides.length - 1 : n;
+
+        // Tambah kelas active ke slide dan dot yang aktif
+
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+    }
+
+
+
+    // Event listener untuk tombol prev
+
+    prevButton.addEventListener('click', () => {
+        showSlide(currentSlide - 1);
+    });
+
+    // Event listener untuk tombol next
 
         nextButton.addEventListener('click', () => {
             showSlide(currentSlide + 1);
         });
 
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                showSlide(index);
-            });
-        });
 
-        setInterval(() => {
-            showSlide(currentSlide + 1);
-        }, 2000);
+
+    // Event listener untuk dots
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            showSlide(index);
+        });
+    });
+
+
+
+    // Auto slide setiap 5 detik
+
+    setInterval(() => {
+        showSlide(currentSlide + 1);
+    }, 2000);
+
 
         showSlide(0);
     }
@@ -50,35 +194,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functions
 
     initializeCarousel();
+    handleSmoothScroll();
 
-});
+    // Tampilkan slide pertama
+    showSlide(0);
 
-document.getElementById('titipKunciForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Mengambil nilai dari form
-    const nama = document.getElementById('nama').value;
-    const email = document.getElementById('email').value;
-    const apartemen = document.getElementById('apartemen').value;
-    const tower = document.getElementById('tower').value;
-    const lantai = document.getElementById('lantai').value;
-    const nomor = document.getElementById('nomor').value;
-    const tipeKamar = document.getElementById('tipeKamar').value;
-    const furniture = document.getElementById('furniture').value;
-    const catatan = document.getElementById('catatan').value;
-
-    // Menyusun pesan untuk WhatsApp
-    const pesan = `Halo, saya ingin mendaftarkan unit untuk Titip Kunci:%0A
-Nama: ${nama}%0A
-Email: ${email}%0A
-Apartemen: ${apartemen}%0A
-Tower: ${tower}%0A
-Lantai: ${lantai}%0A
-Nomor Kamar: ${nomor}%0A
-Tipe Kamar: ${tipeKamar}%0A
-Furniture: ${furniture}%0A
-Catatan: ${catatan}`;
-
-    // Mengarahkan ke WhatsApp
-    window.location.href = `https://wa.me/6287815933353?text=${pesan}`;
 });
