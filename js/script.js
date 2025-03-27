@@ -1,4 +1,3 @@
-
 // Fungsi untuk navbar scroll
 function handleNavbarScroll() {
     const navbar = document.querySelector('.navbar');
@@ -116,9 +115,6 @@ function handleBurgerMenu() {
 
 // Fungsi untuk carousel (existing code)
 function initializeCarousel() {
-
-document.addEventListener('DOMContentLoaded', function() {
-
     const slides = document.querySelectorAll('.carousel-slide');
     const dots = document.querySelectorAll('.dot');
     const prevButton = document.querySelector('.prev');
@@ -127,7 +123,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Fungsi untuk menampilkan slide
     function showSlide(n) {
-
         slides.forEach(slide => slide.classList.remove('active'));
         dots.forEach(dot => dot.classList.remove('active'));
 
@@ -141,37 +136,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         currentSlide = newSlide;
 
-
-        // Hapus kelas active dari semua slide dan dot
-        slides.forEach(slide => slide.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
-
-        // Reset ke slide pertama jika mencapai batas
-        currentSlide = n >= slides.length ? 0 : n < 0 ? slides.length - 1 : n;
-
-        // Tambah kelas active ke slide dan dot yang aktif
-
         slides[currentSlide].classList.add('active');
         dots[currentSlide].classList.add('active');
     }
-
-
-
-    // Event listener untuk tombol prev
 
     prevButton.addEventListener('click', () => {
         showSlide(currentSlide - 1);
     });
 
-    // Event listener untuk tombol next
-
     nextButton.addEventListener('click', () => {
         showSlide(currentSlide + 1);
     });
-
-
-
-    // Event listener untuk dots
 
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
@@ -179,14 +154,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-
-
-    // Auto slide setiap 5 detik
-
     setInterval(() => {
         showSlide(currentSlide + 1);
     }, 2000);
-
 
     showSlide(0);
 }
@@ -197,8 +167,4 @@ document.addEventListener('DOMContentLoaded', function() {
     handleBurgerMenu();
     initializeCarousel();
     handleSmoothScroll();
-
-    // Tampilkan slide pertama
-    showSlide(0);
-
 });
