@@ -1,4 +1,4 @@
- // Fungsi untuk navbar scroll
+// Fungsi untuk navbar scroll
 function handleNavbarScroll() {
     const navbar = document.querySelector('.navbar');
     const header = document.querySelector('.header');
@@ -6,7 +6,7 @@ function handleNavbarScroll() {
     const bookNowBtn = document.querySelector('.book-now-container');
 
     window.addEventListener('scroll', () => {
-        if (window.pageYOffset > headerBottom - navbar.offsetHeight) {
+        if (window.scrollY > headerBottom - navbar.offsetHeight) {
             navbar.classList.add('scrolled');
             bookNowBtn.classList.add('visible');
         } else {
@@ -16,7 +16,7 @@ function handleNavbarScroll() {
     });
 
     // Set initial state
-    if (window.pageYOffset > headerBottom - navbar.offsetHeight) {
+    if (window.scrollY > headerBottom - navbar.offsetHeight) {
         navbar.classList.add('scrolled');
         bookNowBtn.classList.add('visible');
     } else {
