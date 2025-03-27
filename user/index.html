@@ -13,21 +13,32 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-content">
-            <div class="logo-left"><img src="/assets/logo/NEOVALA TRANSPARENT 1.png" alt="Logo Neovala" style="height: 40px;"></div>
+            <div class="burger-menu">
+                <div class="burger-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="logo-left">
+                <a href="#home"><img src="/assets/logo/NEOVALA TRANSPARENT 1.png" alt="Logo Neovala Light" class="logo-light"></a>
+                <a href="#home"><img src="/assets/logo/NEOVALA-DARK.png" alt="Logo Neovala Dark" class="logo-dark"></a>
+            </div>
             <ul class="nav-links">
-                <li><a href="#">Apartmen</a></li>
-                <li><a href="#">Promo</a></li>
-                <li><a href="/user/titipKunci.html">Titip‎Kunci</a></li>
-                <li><a href="/user/ourStory.html">Abou‎tUs</a></li>
-                <li><a href="#">Testimoni</a></li>
-                <li><a href="#">Find‎Us</a></li>
+                <li><a href="#apartment-section">Apartment</a></li>
+                <li><a href="#promo-section">Promo</a></li>
+                <li><a href="#titip-kunci-section">Titip Kunci</a></li>
+                <li><a href="#our-story-section">About Us</a></li>
+                <li><a href="#comment-section">Testimoni</a></li>
+                <li><a href="#footer">Find Us</a></li>
             </ul>
             <div class="logo-right">NEOVALA</div>
         </div>
     </nav>
+    <div class="nav-overlay"></div>
 
     <!-- Header dengan Carousel -->
-    <header class="header">
+    <header class="header" id="home">
         <div class="carousel">
             <!-- Tambahkan overlay text -->
             <div class="header-text-overlay">
@@ -101,7 +112,7 @@
         </div>
     
         <!-- Apartment Section -->
-        <section class="apartment-section">
+        <section class="apartment-section" id="apartment-section">
             <h2 class="apartment-title">WE ARE AVAILABLE AT</h2>
             <div class="apartment-container">
     
@@ -174,7 +185,7 @@
         </section>
     
         <!-- Titip Kunci Section -->
-        <section class="titip-kunci-section">
+        <section class="titip-kunci-section" id="titip-kunci-section">
             <div class="titip-kunci-container">
                 <img src="/assets/images/home pages/IMG_5703.png" alt="Background" class="titip-kunci-bg">
                 <div class="titip-kunci-content">
@@ -192,7 +203,7 @@
             </div>
         </section>
     
-        <section class="promo-section">
+        <section class="promo-section" id="promo-section">
             <h2 class="promo-title">PROMO CHECK-IN NEOVALA</h2>
             
             <div class="slider-container">
@@ -231,7 +242,7 @@
         </section>
     
         <!-- Our Story Section -->
-        <section class="our-story-section">
+        <section class="our-story-section" id="our-story-section">
             <div class="story-container">
                 <div class="story-content">
                     <h2 class="story-title">OUR STORY</h2>
@@ -263,7 +274,7 @@
         </section>
         
         <!-- Comment Section -->
-        <section class="comment-section">
+        <section class="comment-section" id="comment-section">
             <h2 class="comment-title">WHAT THEY SAY?</h2>
             <div class="comment-container">
                 <!-- Comment Card 1 -->
@@ -395,7 +406,7 @@
         </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" id="footer">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>GUEST SERVICE</h3>
@@ -445,8 +456,54 @@
         <div class="footer-bottom">
             <p>Copyright © neovala from 2023. All right reserved Your Level Information</p>
         </div>
-    </footer>   
-
-    <script src="/js/script.js"></script>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const dots = document.querySelectorAll('.dot');
+            const prevButton = document.querySelector('.prev');
+            const nextButton = document.querySelector('.next');
+            let currentSlide = 0;
+        
+            // Fungsi untuk menampilkan slide
+            function showSlide(n) {
+                // Hapus kelas active dari semua slide dan dot
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+        
+                // Reset ke slide pertama jika mencapai batas
+                currentSlide = n >= slides.length ? 0 : n < 0 ? slides.length - 1 : n;
+        
+                // Tambah kelas active ke slide dan dot yang aktif
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+            }
+        
+            // Event listener untuk tombol prev
+            prevButton.addEventListener('click', () => {
+                showSlide(currentSlide - 1);
+            });
+        
+            // Event listener untuk tombol next
+            nextButton.addEventListener('click', () => {
+                showSlide(currentSlide + 1);
+            });
+        
+            // Event listener untuk dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    showSlide(index);
+                });
+            });
+        
+            // Auto slide setiap 5 detik
+            setInterval(() => {
+                showSlide(currentSlide + 1);
+            }, 2000);
+        
+            // Tampilkan slide pertama
+            showSlide(0);
+        });
+    </script>
 </body>
 </html> 
