@@ -2233,3 +2233,555 @@ body.menu-open {
         font-size: 1.3rem;
     }
 }
+
+/* Styling untuk Booking Page */
+.booking-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top:20px;    
+}
+
+.booking-section {
+    margin-bottom: 40px;
+    padding: 20px;
+    position: relative;
+}
+
+.booking-section h2 {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #674C1D;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.booking-images {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.booking-image {
+    flex: 1;
+    max-width: 450px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    margin-top: 0;
+    border-radius: 25px;
+    height: 100px;
+}
+
+.main-image {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 25px;
+    transition: transform 0.3s ease;
+}
+
+.small-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    width: 180px;
+    height: auto;
+    padding: 0;
+    transition: transform 0.3s ease;
+}
+
+.small-image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.booking-overlay {
+    display: none;
+}
+
+.booking-text {
+    display: none;
+}
+
+/* Efek Hover */
+.booking-image:hover .booking-overlay {
+    opacity: 0;
+}
+
+.booking-image:hover .booking-text {
+    transform: none;
+}
+
+.booking-image:hover .main-image {
+    transform: scale(1.1);
+}
+
+/* Menambahkan efek hover pada small image */
+.booking-image:hover .small-image {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Efek Hover untuk main image tetap ada */
+.booking-image:hover .main-image {
+    transform: scale(1.1);
+}
+
+/* Responsivitas */
+@media screen and (max-width: 768px) {
+    .booking-images {
+        flex-direction: column;
+        align-items: center;
+        padding: 0 20px;
+    }
+
+    .booking-image {
+        width: 100%;
+        max-width: 400px;
+        height: 80px;
+    }
+
+    .main-image {
+        height: 80px;
+    }
+
+    .small-image {
+        width: 150px;
+    }
+
+    .booking-section h2 {
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .booking-image {
+        max-width: 300px;
+        height: 70px;
+    }
+
+    .main-image {
+        height: 70px;
+    }
+
+    .small-image {
+        width: 120px;
+    }
+}
+/* Tambahkan style ini di file CSS Anda */
+.titip-kunci {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.info-box {
+    background-color: #674c1d;
+    color: white;
+    padding: 3rem;
+    border-radius: 102px 6px 98px 6px;
+    margin-bottom: 2rem;
+}
+
+.info-box h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.registration-info {
+    text-align: center;
+}
+
+.registration-info h2 {
+    color: #674c1d;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
+
+.steps-list {
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto;
+    counter-reset: step-counter;
+    list-style: none;
+}
+
+.steps-list li {
+    position: relative;
+    padding: 1rem 1rem 1rem 3rem;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.steps-list li::before {
+    content: counter(step-counter);
+    counter-increment: step-counter;
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 35px;
+    height: 35px;
+    background-color: #674c1d;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .titip-kunci {
+        padding: 1rem;
+    }
+    
+    .info-box, .steps-list li {
+        padding: 1rem;
+    }
+    
+    .steps-list li::before {
+        left: -10px;
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* Form Section Styles */
+.form-section {
+    padding: 2rem;
+    margin-bottom: 3rem;
+}
+
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #674c1d;
+    padding: 2rem;
+    border-radius: 20px;
+    color: white;
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 8px;
+    background-color: white;
+    color: #333;
+}
+
+.form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+
+.cancel-btn,
+.kirim-btn {
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.cancel-btn {
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+}
+
+.kirim-btn {
+    background-color: white;
+    color: #674c1d;
+}
+
+.cancel-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.kirim-btn:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .form-section {
+        padding: 1rem;
+    }
+
+    .form-container {
+        padding: 1.5rem;
+    }
+
+    .form-buttons {
+        flex-direction: column;
+    }
+
+    .cancel-btn,
+    .kirim-btn {
+        width: 100%;
+    }
+}
+
+.our-story {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.story-item {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.story-item.reverse {
+    flex-direction: row-reverse;
+}
+
+.story-image {
+    flex: 1;
+}
+
+.story-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.story-content {
+    flex: 1;
+    padding: 2rem;
+    background: white;
+    border-radius: 71px 17px 70px 17px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.story-content h2 {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.story-content p {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .story-item {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .story-item.reverse {
+        flex-direction: column;
+    }
+
+    .story-content {
+        padding: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .our-story {
+        padding: 1rem;
+    }
+
+    .story-content {
+        padding: 1rem;
+    }
+}
+
+@media screen and (max-width: 280px) {
+    .apartment-container {
+        grid-template-columns: minmax(150px, 250px);
+        gap: 15px;
+    }
+
+    .apartment-card {
+        height: 170px;
+    }
+
+    .apartment-name {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+    }
+
+    .view-details-btn {
+        padding: 5px 15px;
+        font-size: 0.75rem;
+    }
+
+    .titip-kunci-title {
+        font-size: 1.1rem;
+    }
+
+    .titip-kunci-text {
+        font-size: 0.8rem;
+    }
+
+    .handshake-icon {
+        width: 80px;
+    }
+
+    .view-more-btn {
+        font-size: 0.9rem;
+        padding: 6px 25px;
+    }
+
+    .card {
+        flex: 0 0 220px;
+        height: 220px;
+    }
+    
+    .card-image {
+        height: 140px;
+    }
+    
+    .card-title {
+        font-size: 12px;
+    }
+    
+    .download-btn {
+        padding: 4px;
+        font-size: 0.7rem;
+    }
+    
+    .promo-text {
+        font-size: 14px;
+    }
+    
+    .promo-title {
+        font-size: 1.5rem;
+    }
+
+    .story-container {
+        padding: 12px;
+        gap: 15px;
+    }
+
+    .story-title {
+        font-size: 1.5rem;
+    }
+
+    .story-text {
+        font-size: 0.8rem;
+    }
+
+    .story-image {
+        height: 200px;
+    }
+
+    .contact-item {
+        font-size: 0.8rem;
+        margin-bottom: 10px;
+    }
+
+    .contact-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .read-more-btn {
+        font-size: 0.7rem;
+        padding: 6px 15px;
+    }
+
+    .comment-title {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    
+    .comment-card {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .comment-location {
+        font-size: 0.8rem;
+    }
+    
+    .comment-text {
+        font-size: 0.75rem;
+        margin-bottom: 10px;
+    }
+    
+    .quote-icon {
+        font-size: 20px;
+    }
+    
+    .star-icon {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .comment-user {
+        font-size: 0.7rem;
+    }
+
+    .book-now-btn {
+        padding: 4px 15px;
+        font-size: 0.7rem;
+    }
+    
+    .book-now-icon {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+@media screen and (max-width: 495px) {
+    h2.apartment-title {
+        font-size: 1.3rem;
+    }
+}
