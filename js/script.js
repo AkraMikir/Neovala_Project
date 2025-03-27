@@ -189,14 +189,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
         showSlide(0);
-    }
-
+    },
+)
     // Initialize all functions
-
-    initializeCarousel();
+    handleNavbarScroll();
+    handleBurgerMenu();
     handleSmoothScroll();
+    initializeCarousel();
 
     // Tampilkan slide pertama
     showSlide(0);
 
-});
+};
