@@ -1,115 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Fungsi untuk navbar scroll
-    function handleNavbarScroll() {
-        const navbar = document.querySelector('.navbar');
-        const header = document.querySelector('.header');
-        const headerBottom = header.offsetTop + header.offsetHeight;
-        const bookNowBtn = document.querySelector('.book-now-container');
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > headerBottom - navbar.offsetHeight) {
-                navbar.classList.add('scrolled');
-                bookNowBtn.classList.add('visible');
-            } else {
-                navbar.classList.remove('scrolled');
-                bookNowBtn.classList.remove('visible');
-            }
-        });
-
-        // Set initial state
-        if (window.scrollY > headerBottom - navbar.offsetHeight) {
-            navbar.classList.add('scrolled');
-            bookNowBtn.classList.add('visible');
-        } else {
-            bookNowBtn.classList.remove('visible');
-        }
-    }
-
-    // Fungsi untuk smooth scroll
-    function handleSmoothScroll() {
-        const navLinks = document.querySelectorAll('.nav-links a, .logo-left a');
-        const navHeight = document.querySelector('.navbar').offsetHeight;
-
-        function smoothScrollTo(targetId) {
-            const targetSection = document.querySelector(targetId);
-            let targetPosition;
-            
-            if (targetId === '#home') {
-                targetPosition = 0;
-            } else {
-                targetPosition = targetSection.offsetTop - navHeight;
-            }
-
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        }
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href');
-                smoothScrollTo(targetId);
-            });
-        });
-    }
-
-    // Fungsi untuk menu burger
-    function handleBurgerMenu() {
-        const burgerMenu = document.querySelector('.burger-menu');
-        const navLinks = document.querySelector('.nav-links');
-        const overlay = document.querySelector('.nav-overlay');
-        const navItems = document.querySelectorAll('.nav-links a');
-        const closeButton = document.createElement('button');
-        
-        closeButton.innerHTML = '×';
-        closeButton.className = 'close-menu-btn';
-        navLinks.insertBefore(closeButton, navLinks.firstChild);
-
-        function toggleMenu() {
-            const isOpening = !navLinks.classList.contains('active');
-            const bookNowBtn = document.querySelector('.book-now-container');
-            
-            if (isOpening) {
-                if (bookNowBtn.classList.contains('visible')) {
-                    bookNowBtn.style.zIndex = '100';
-                }
-            } else {
-                bookNowBtn.style.zIndex = '';
-            }
-
-            burgerMenu.classList.toggle('active');
-            navLinks.classList.toggle('active');
-            overlay.classList.toggle('active');
-        }
-
-        burgerMenu.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu);
-        closeButton.addEventListener('click', toggleMenu);
-
-        navItems.forEach(item => {
-            item.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = item.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                const navHeight = document.querySelector('.navbar').offsetHeight;
-                
-                let targetPosition;
-                if (targetId === '#home') {
-                    targetPosition = 0;
-                } else {
-                    targetPosition = targetSection.offsetTop - navHeight;
-                }
-
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            });
-        });
-    }
-
+   
     // Fungsi untuk carousel
     function initializeCarousel() {
         const slides = document.querySelectorAll('.carousel-slide');
@@ -158,8 +48,37 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Initialize all functions
-    handleNavbarScroll();   
-    handleBurgerMenu();
+
     initializeCarousel();
-    handleSmoothScroll();
+
+});
+
+document.getElementById('titipKunciForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Mengambil nilai dari form
+    const nama = document.getElementById('nama').value;
+    const email = document.getElementById('email').value;
+    const apartemen = document.getElementById('apartemen').value;
+    const tower = document.getElementById('tower').value;
+    const lantai = document.getElementById('lantai').value;
+    const nomor = document.getElementById('nomor').value;
+    const tipeKamar = document.getElementById('tipeKamar').value;
+    const furniture = document.getElementById('furniture').value;
+    const catatan = document.getElementById('catatan').value;
+
+    // Menyusun pesan untuk WhatsApp
+    const pesan = `Halo, saya ingin mendaftarkan unit untuk Titip Kunci:%0A
+Nama: ${nama}%0A
+Email: ${email}%0A
+Apartemen: ${apartemen}%0A
+Tower: ${tower}%0A
+Lantai: ${lantai}%0A
+Nomor Kamar: ${nomor}%0A
+Tipe Kamar: ${tipeKamar}%0A
+Furniture: ${furniture}%0A
+Catatan: ${catatan}`;
+
+    // Mengarahkan ke WhatsApp
+    window.location.href = `https://wa.me/6287815933353?text=${pesan}`;
 });

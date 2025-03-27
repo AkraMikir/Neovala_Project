@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo-left"><img src="../assets/logo/NEOVALA-DARK.png" alt="Logo Neovala" style="height: 40px;"></div>
+            <ul class="nav-links">
+                <li><a href="#">Apartmen</a></li>
+                <li><a href="#">Promo</a></li>
+                <li><a href="/tampilan/titipKunci.html">Titip‎Kunci</a></li>
+                <li><a href="/tampilan/ourStory.html">Abou‎tUs</a></li>
+                <li><a href="#">Testimoni</a></li>
+                <li><a href="#">Find‎Us</a></li>
+            </ul>
+            <div class="logo-right">NEOVALA</div>
+        </div>
+    </nav>
+
+    <!-- Header dengan Carousel -->
+    <header class="header">
+        <div class="carousel" >
+            <!-- Tambahkan overlay text -->
+
+            <button class="carousel-button prev">&#10094;</button>
+            <button class="carousel-button next">&#10095;</button>
+            
+            <div class="carousel-container" >
+                <div class="carousel-slide">
+                    <img src="../assets/images/our-story/IMG_3358.png" alt="Slide 1">
+                </div>
+                <div class="carousel-slide">
+                    <img src="../assets/images/our-story/IMG_3125.png" alt="Slide 2">
+                </div>
+                <div class="carousel-slide">
+                    <img src="../assets/images/our-story/IMG_0722.png" alt="Slide 3">
+                </div>
+                <div class="carousel-slide">
+                    <img src="../assets/images/our-story/IMG_3358.png" alt="Slide 4">
+                </div>
+            </div>
+
+            <div class="carousel-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Tambahkan section ini di file ourStory.html -->
+<section class="titip-kunci">
+    <div class="info-box">
+        <h2>APA ITU TITIP KUNCI?</h2>
+        <p>Punya Unit Apartemen di Transpark Juanda dan Grand Kamala Lagoon? Tidak menghasilkan apa-apa atau bahkan merugi hanya bayar iuran pemeliharan (IPL) tiap bulannya?? Saatnya bergabung bersama Hermione Property dan rasakan keuntungannya.<br> <br>
+
+            Website ini kami buat dimulai dari bentuk after service kita kepada para pemilik unit di Grand Kamala Lagoon dan Transpark Juanda, yang mempercepat menemukan calon penyewa unit apartemen Grand Kamala Lagoon dan Transpark Juanda dengan Profesional, Cepat, dan Transparan.</p>
+    </div>
+
+    <div class="registration-info">
+        <h2>Bagaimana cara mendaftarkan unit untuk Kerjasama di Neovala?</h2>
+        <ol class="steps-list">
+            <li>Mendaftarkan Unit Kalian melalui form yang tersedia di bawah, atau kalian bisa langsung kontak langsung kami di 0878-1593-3353</li>
+            <li>Jika Unit sedang ditempati, bisa tanpa memindahkan kursi atau kamu sekarang, hanya dengan dokumentasikan foto atau video keadaanya. Disarankan video atau foto berbentu portrait. Karena kita lebih prioritas memposting unit yang memilikan furniture.</li>
+            <li>Harga sewa merupakan kesepakatan dan tergantung dengan furnish atau isi didalam unitnya.</li>
+            <li>Tidak dikenakan biaya promosi atau gratis! Hanya komisi dari sewa unit apartemen.</li>
+            <li>Kami tidak meminta berkas apapun selama pemilikan sewa apartemen.</li>
+            <li>Silahkan dibuat list furniture atau isi yang ada di dalam unit agar bisa kami pertanggung jawabkan apabila terjadi sesuatu ditengah perjalanan.</li>
+        </ol>
+    </div>
+</section>
+
+<section class="form-section">
+    <div class="form-container">
+        <h2>Form Titip Kunci Apartemen by Neovala</h2>
+        <form id="titipKunciForm">
+            <div class="form-group">
+                <label for="nama">Nama</label>
+                <input type="text" id="nama" placeholder="Masukan Nama" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Masukan Email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="apartemen">Apartemen</label>
+                <input type="text" id="apartemen" placeholder="Masukan Nama Apartemen" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tower">Nama Tower</label>
+                <input type="text" id="tower" placeholder="Masukan Nama Tower" required>
+            </div>
+
+            <div class="form-group">
+                <label for="lantai">Lantai</label>
+                <input type="text" id="lantai" placeholder="Masukan Nomor Lantai" required>
+            </div>
+
+            <div class="form-group">
+                <label for="nomor">Nomor Kamar</label>
+                <input type="text" id="nomor" placeholder="Masukan Nomor Kamar" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tipeKamar">Ukuran Kamar</label>
+                <select id="tipeKamar" required>
+                    <option value="" disabled selected>Pilih Ukuran Kamar</option>
+                    <option value="studio">Studio</option>
+                    <option value="1br">1 Bed Room</option>
+                    <option value="2br">2 Bed Room</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="furniture">Furniture</label>
+                <select id="furniture" required>
+                    <option value="" disabled selected>Pilih Tipe Furniture</option>
+                    <option value="kosong">Kosong</option>
+                    <option value="semi">Semi Furniture</option>
+                    <option value="full">Full Furniture</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="catatan">Catatan Pemilik</label>
+                <textarea id="catatan" placeholder="Isi data tambahan" rows="4"></textarea>
+            </div>
+
+            <div class="form-buttons">
+                <button type="reset" class="cancel-btn">Cancel</button>
+                <button type="submit" class="kirim-btn">Kirim</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+    <!-- footer mulai -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>GUEST SERVICE</h3>
+                <p>0878-1593-3353</p>
+                
+                <h3>CONNECT WITH US</h3>
+                <ul>
+                    <li>INSTAGRAM</li>
+                    <li>FACEBOOK</li>
+                    <li>TIKTOK</li>
+                    <li>TWITTER</li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>FOLLOW US</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="far fa-envelope"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+
+                <h3>PAYMENT WITH</h3>
+                <ul>
+                    <li>BCA</li>
+                    <li>MANDIRI</li>
+                    <li>QRIS</li>
+                    <li>BAYAR DI TEMPAT</li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>AVAILABLE AT:</h3>
+                <ul>
+                    <li>TRANSPARK JUANDA</li>
+                    <li>TRANSPARK CIBUBUR</li>
+                    <li>GRAND KAMALA LAGOON</li>
+                    <li>PATRAJAND URBANO</li>
+                    <li>GATEWAY CICADAS</li>
+                    <li>PODOMORO GOLF VIEW</li>
+                    <div class="footer-logo">
+                        <li style="font-weight: bolder; font-size:larger;">NEOVALA <img src="/assets/logo/NEOVALA TRANSPARENT 1.png" alt=""></li>
+                    </div>
+                </ul>
+            </div>
+
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © neovala from 2023. All right reserved Your Level Information</p>
+        </div>
+    </footer>   
+</body>
+<script src="/js/script.js"></script>
+</html>
