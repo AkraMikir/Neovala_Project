@@ -8,19 +8,27 @@ function handleNavbarScroll() {
     window.addEventListener('scroll', () => {
         if (window.scrollY > headerBottom - navbar.offsetHeight) {
             navbar.classList.add('scrolled');
-            bookNowBtn.classList.add('visible');
+            if (bookNowBtn) {
+                bookNowBtn.classList.add('visible');
+            }
         } else {
             navbar.classList.remove('scrolled');
-            bookNowBtn.classList.remove('visible');
+            if (bookNowBtn) {
+                bookNowBtn.classList.remove('visible');
+            }
         }
     });
 
     // Set initial state
     if (window.scrollY > headerBottom - navbar.offsetHeight) {
         navbar.classList.add('scrolled');
-        bookNowBtn.classList.add('visible');
+        if (bookNowBtn) {
+            bookNowBtn.classList.add('visible');
+        }
     } else {
-        bookNowBtn.classList.remove('visible');
+        if (bookNowBtn) {
+            bookNowBtn.classList.remove('visible');
+        }
     }
 }
 
@@ -61,6 +69,7 @@ function handleBurgerMenu() {
     const overlay = document.querySelector('.nav-overlay');
     const navItems = document.querySelectorAll('.nav-links a');
     const closeButton = document.createElement('button');
+    const bookNowBtn = document.querySelector('.book-now-container');
     
     closeButton.innerHTML = '×';
     closeButton.className = 'close-menu-btn';
@@ -68,14 +77,12 @@ function handleBurgerMenu() {
 
     function toggleMenu() {
         const isOpening = !navLinks.classList.contains('active');
-        const bookNowBtn = document.querySelector('.book-now-container');
         
-        if (isOpening) {
-            // Ensure Book Now button stays visible if it was visible
+        if (bookNowBtn && isOpening) {
             if (bookNowBtn.classList.contains('visible')) {
                 bookNowBtn.style.zIndex = '100';
             }
-        } else {
+        } else if (bookNowBtn) {
             bookNowBtn.style.zIndex = '';
         }
 
@@ -166,12 +173,48 @@ function initializeCarousel() {
     showSlide(0);
 }
 
+// Fungsi untuk handling star rating
+function handleStarRating() {
+    const stars = document.querySelectorAll('.star-rating-select i');
+    const ratingInput = document.getElementById('ratingInput');
+
+    stars.forEach(star => {
+        star.addEventListener('mouseover', function() {
+            const rating = this.dataset.rating;
+            highlightStars(stars, rating);
+        });
+
+        star.addEventListener('click', function() {
+            const rating = this.dataset.rating;
+            ratingInput.value = rating;
+            highlightStars(stars, rating);
+        });
+
+        star.addEventListener('mouseout', function() {
+            const currentRating = ratingInput.value;
+            highlightStars(stars, currentRating);
+        });
+    });
+}
+
+function highlightStars(stars, rating) {
+    stars.forEach(star => {
+        const starRating = star.dataset.rating;
+        if (starRating <= rating) {
+            star.classList.add('active');
+        } else {
+            star.classList.remove('active');
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functions
     initializeCarousel();
     handleSmoothScroll();
     handleBurgerMenu();
     handleNavbarScroll();
+    handleStarRating();
 });
 
 
