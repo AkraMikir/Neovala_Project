@@ -173,3 +173,34 @@ document.addEventListener('DOMContentLoaded', function() {
     handleBurgerMenu();
     handleNavbarScroll();
 });
+
+
+function sendToWhatsApp(event) {
+    event.preventDefault();
+    
+    // Ambil nilai dari form
+    const nama = document.getElementById('nama').value;
+    const nomor = document.getElementById('nomor').value;
+    const tipeKamar = document.getElementById('tipeKamar').value;
+    const tanggalCheckin = document.getElementById('tanggalCheckin').value;
+    const durasi = document.getElementById('durasi').value;
+    const pesan = document.getElementById('pesan').value;
+    
+    // Format pesan untuk WhatsApp
+    const pesanWhatsApp = `*Check-in Apartemen*%0A%0A` +
+        `Nama: ${nama}%0A` +
+        `Nomor WA: ${nomor}%0A` +
+        `Tipe Kamar: ${tipeKamar}%0A` +
+        `Tanggal Check-in: ${tanggalCheckin}%0A` +
+        `Durasi: ${durasi}%0A` +
+        `Pesan: ${pesan}`;
+    
+    // Ganti nomor WhatsApp di bawah ini dengan nomor yang dituju
+    const nomorAdmin = '6281234567890'; // Ganti dengan nomor WhatsApp admin
+    
+    // Buat URL WhatsApp
+    const urlWhatsApp = `https://wa.me/${nomorAdmin}?text=${pesanWhatsApp}`;
+    
+    // Buka WhatsApp di tab baru
+    window.open(urlWhatsApp, '_blank');
+}
