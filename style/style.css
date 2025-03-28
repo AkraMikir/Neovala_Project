@@ -23,6 +23,28 @@ body {
     transition: all 0.3s ease;
 }
 
+/* Tambahkan style khusus untuk navbar di halaman bookNow */
+.navbar.booknow-navbar {
+    background-color: #FFFF;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.booknow-navbar .nav-links a {
+    color: #674C1D;
+}
+
+.navbar.booknow-navbar .logo-right {
+    color: #674C1D;
+}
+
+.navbar.booknow-navbar .logo-left .logo-light {
+    display: none;
+}
+
+.navbar.booknow-navbar .logo-left .logo-dark {
+    display: block;
+}
+
 .nav-content {
     max-width: 1200px;
     margin: 0 auto;
@@ -88,6 +110,11 @@ body {
     width: 30px;
     height: 20px;
     position: relative;
+    transition: all 0.3s ease;
+}
+
+.burger-menu:hover {
+    opacity: 0.5;
     transition: all 0.3s ease;
 }
 
@@ -161,7 +188,7 @@ body {
 }
     
 .close-menu-btn:hover {
-    opacity: 0.8;
+    opacity: 0.5;
 }
 
 /* Navigation Links */
@@ -188,7 +215,7 @@ body {
     position: relative;
 }
 
-.nav-links a::after {
+.nav-links a::after, .navbar.booknow-navbar .nav-links a::after {
     content: '';
     position: absolute;
     width: 0;
@@ -202,15 +229,18 @@ body {
 
 .nav-links a:hover::after,
 .nav-links a:focus::after,
-.nav-links a.active::after {
+.nav-links a.active::after,
+.navbar.booknow-navbar .nav-links a:hover::after,
+.navbar.booknow-navbar .nav-links a:focus::after,
+.navbar.booknow-navbar .nav-links a.active::after {
     width: 100%;
 }
 
-.navbar.scrolled .nav-links a {
+.navbar.scrolled .nav-links a, .navbar.booknow-navbar .nav-links a {
     color: #674C1D;
 }
 
-.navbar.scrolled .nav-links a::after {
+.navbar.scrolled .nav-links a::after, .navbar.booknow-navbar .nav-links a::after {
     background: #674C1D;
 }
 
@@ -267,7 +297,7 @@ body {
         order: 2;
     }
 
-    .nav-links {
+    .nav-links, .navbar.booknow-navbar .nav-links {
         position: fixed;
         top: 0;
         left: -100%;
@@ -285,7 +315,7 @@ body {
         overflow-y: none;
     }
 
-    .nav-links.active {
+    .nav-links.active, .navbar.booknow-navbar .nav-links.active {
         left: 149px;
     }
 
@@ -480,31 +510,31 @@ body {
 
 .carousel-dots {
     position: absolute;
-    bottom: 20px;
+    bottom: 60px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     gap: 10px;
-    z-index: 100;
+    z-index: 107;
 }
 
 .dot {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
+    background: #674c1d1b;
     cursor: pointer;
     transition: background 0.3s ease;
 }
 
 .dot.active {
-    background: white;
+    background: #674C1D;
 }
 
 /* Main Content Styles */
 .main-content {
     position: relative;
-    max-width: 1200px;
+    max-width: 100%;
     margin: -50px auto 0px;
     padding: 0 20px;
     z-index: 3;
@@ -513,16 +543,32 @@ body {
 .service-container {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 30px;
+    gap: 55px 0px;
     align-items: center;
     justify-content: center;
 }
 
 .service-item {
-    border-bottom: 1px solid black ;
     text-align: center;
-    padding: 20px;
     transition: transform 0.3s ease;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.service-container .service-item:nth-child(1)::after,
+.service-container .service-item:nth-child(2)::after,
+.service-container .service-item:nth-child(3)::after,
+.service-container .service-item:nth-child(4)::after,
+.service-container .service-item:nth-child(5)::after,
+.service-container .service-item:nth-child(6)::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    height: 0.5px;
+    background-color: #674C1D;
 }
 
 .service-item:hover {
@@ -537,7 +583,7 @@ body {
 }
 
 .service-item p {
-    font-size: 14px;
+    font-size: 12px;
     font-family: "EB Garamond", serif;
     color: #674C1D;
     margin: 0;
@@ -651,9 +697,87 @@ li.footer-section-available{
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
+@media (max-width: 1480px) {
     .service-container {
         grid-template-columns: repeat(3, 1fr);
+        position: relative;
+        gap: 55px 0;
+    }
+    /* Hapus garis vertikal untuk item 4,5,6 */
+    .service-container .service-item:nth-child(4)::after,
+    .service-container .service-item:nth-child(5)::after,
+    .service-container .service-item:nth-child(6)::after {
+        display: none;
+    }
+
+    /* Tambahkan garis horizontal untuk semua item */
+    .service-container .service-item:nth-child(1)::after,
+    .service-container .service-item:nth-child(2)::after,
+    .service-container .service-item:nth-child(3)::after {
+        content: '';
+        position: absolute;
+        bottom: -27.5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 220px;
+        height: 0.5px;
+        background-color: #674C1D;
+    }
+
+    /* Tambahkan garis vertikal */
+    .service-container .service-item:nth-child(2)::before,
+    .service-container .service-item:nth-child(3)::before,
+    .service-container .service-item:nth-child(5)::before,
+    .service-container .service-item:nth-child(6)::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 160px;
+        width: 0.5px;
+        background-color: #674C1D;
+    }
+
+    .main-content {
+        margin: 40px auto 0px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .service-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .service-container .service-item:nth-child(4)::after,
+    .service-container .service-item:nth-child(5)::after,
+    .service-container .service-item:nth-child(6)::after {
+        display: block;
+        content: '';
+        position: absolute;
+        bottom: -27.5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 220px;
+        height: 0.5px;
+        background-color: #674C1D;
+    }
+
+    /* Hapus garis vertikal untuk item 4,5,6 */
+    .service-container .service-item:nth-child(3)::before,
+    .service-container .service-item:nth-child(5)::before {
+        display: none;
+    }
+    /* Tambahkan garis vertikal */
+    .service-container .service-item:nth-child(4)::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 160px;
+        width: 0.5px;
+        background-color: #674C1D;
     }
 }
 
@@ -661,22 +785,58 @@ li.footer-section-available{
     .service-container {
         grid-template-columns: repeat(2, 1fr);
     }
+    .main-content {
+        margin: 10px auto 0px;
+    }
 }
 
-@media (max-width: 480px) {
+
+@media (max-width: 513px) {
+    .main-content {
+        margin: -10px auto 0px;
+    }
+    .service-item p {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 550px) {
     .service-container {
         grid-template-columns: 1fr;
     }
-}
+    .main-content {
+        margin: -5px auto 0px;
+    }
+    .service-container .service-item:nth-child(1)::before,
+    .service-container .service-item:nth-child(2)::before,
+    .service-container .service-item:nth-child(4)::before,
+    .service-container .service-item:nth-child(6)::before {
+        display: none;
+    }
+} 
 
 @media (max-width: 768px) {
     .footer-content {
         grid-template-columns: repeat(2, 1fr);
     }
+    
 
     .footer-logo {
         grid-column: span 2;
         text-align: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .footer-section {
+        border-right: none;
+        border-bottom: 1px solid blanchedalmond;
+        padding-bottom: 40px;
+    }
+
+    .footer-section:nth-child(3) {
+        border-bottom: none;
+        padding-bottom: 0px;
     }
 }
 
@@ -696,15 +856,15 @@ li.footer-section-available{
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
     font-style: italic;
-    top: 85%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
     z-index: 100;
     width: 80%;
-    max-width: 800px;
-    padding: 2rem;
+    max-width: 900px;
+    padding: 3rem;
 
 }
 
@@ -712,6 +872,37 @@ li.footer-section-available{
     font-size: 1.2rem;
     line-height: 1.6;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Titip Kunci Header Text Overlay Styles */
+.titip-kunci-header-text-overlay {
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 100;
+    width: 80%;
+    max-width: 900px;
+    padding: 3rem;
+    
+}
+
+.titip-kunci-header-text-overlay img {
+    width: 250px;
+    height: auto;
+}
+
+.titip-kunci-header-text-overlay p {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 4rem;
+    line-height: 1.6;
+    text-shadow: 0px 6px 10px rgba(255, 255, 255, 1),
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.6),
+    0 0 30px rgba(255, 255, 255, 0.4);
 }
 
 /* Hapus gradasi overlay pada carousel */
@@ -835,15 +1026,15 @@ li.footer-section-available{
     transform: translateY(-2px);
 }
 .promo-text {
-    max-width: 2000px;
-    margin: 50px 0 0 50px;
+    max-width: 1450px;
+    margin: 50px 0 0 20px;
     padding: 0 50px;
     color: #FFFFFF; 
     font-weight: Medium;
     font-style: italic;
     font-family: "Montserrat", sans-serif;
     font-size: 30px;
-    text-align: left;
+    text-align: justify;
     position: relative;
     line-height: 1.5;
     letter-spacing: 0.5px;
@@ -881,6 +1072,7 @@ li.footer-section-available{
     margin-bottom: 40px;
     font-weight: bolder;
     font-family: "Montserrat", sans-serif;
+    color: #FFFFFF;
 }
 
 .story-text {
@@ -889,7 +1081,7 @@ li.footer-section-available{
     margin-bottom: 50px;
     font-family: "Montserrat", sans-serif;
     font-style: italic;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 .contact-info {
@@ -949,6 +1141,7 @@ li.footer-section-available{
     width: 100%;
     margin: 0;
     text-align: center;
+    text-decoration: none;
 }
 
 .read-more-btn:hover {
@@ -1081,7 +1274,7 @@ li.footer-section-available{
     background: #FFFFFF;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.8);
     transition: transform 0.3s ease;
     position: relative;
     width: 614px;
@@ -1431,6 +1624,12 @@ body.menu-open {
     .card-title {
         font-size: 22px;
     }
+
+    .promo-text {
+        font-size: 22px;
+        margin: 40px 0 0 0px;
+        padding: 0 40px;
+    }
     
     .download-btn {
         font-size: 1.1rem;
@@ -1489,7 +1688,7 @@ body.menu-open {
 
 @media screen and (max-width: 1200px) {
     .apartment-container {
-        grid-template-columns: minmax(300px, 500px);
+        grid-template-columns: minmax(1000px, 1380px);
         justify-content: center;
         gap: 35px;
     }
@@ -1563,8 +1762,8 @@ body.menu-open {
     
     .promo-text {
         font-size: 26px;
-        margin: 40px 0 0 40px;
-        padding: 0 40px;
+        margin: 40px 0 0 0px;
+        padding: 0 30px;
     }
 
     .story-container {
@@ -1619,9 +1818,42 @@ body.menu-open {
     }
 }
 
+@media screen and (max-width: 1092px) {
+    .apartment-container {
+        grid-template-columns: minmax(500px, 980px);
+        justify-content: center;
+        gap: 35px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .apartment-container {
+        grid-template-columns: minmax(500px, 1000px);
+        justify-content: center;
+        gap: 35px;
+    }
+}
+
+@media screen and (max-width: 824px) {
+    .contact-item {
+        font-size: 1.1rem;
+    }
+
+    .contact-icon {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media screen and (max-width: 771px) {
+    .contact-item {
+        font-size: 1rem;
+    }   
+}
+
 @media screen and (max-width: 768px) {
     .apartment-container {
-        grid-template-columns: minmax(250px, 400px);
+        grid-template-columns: minmax(250px, 900px);
         gap: 30px;
     }
 
@@ -1690,8 +1922,8 @@ body.menu-open {
     
     .promo-text {
         font-size: 22px;
-        margin: 30px 0 0 30px;
-        padding: 0 30px;
+        margin: 30px 0 0 0px;
+        padding: 0 25px;
     }
     
     .promo-title {
@@ -1718,7 +1950,7 @@ body.menu-open {
     .story-text {
         font-size: 1.1rem;
         margin-bottom: 30px;
-        text-align: center;
+        justify-content: justify;
     }
 
     .story-image {
@@ -1727,7 +1959,7 @@ body.menu-open {
 
     .contact-item {
         font-size: 1.1rem;
-        justify-content: center;
+        justify-content: justify;
     }
 
     .contact-icon {
@@ -1795,7 +2027,7 @@ body.menu-open {
 
 @media screen and (max-width: 480px) {
     .apartment-container {
-        grid-template-columns: minmax(200px, 350px);
+        grid-template-columns: minmax(300px, 900px);
         gap: 25px;
         padding: 0 10px;
     }
@@ -1860,8 +2092,7 @@ body.menu-open {
     
     .promo-text {
         font-size: 18px;
-        margin: 20px 0 0 20px;
-        padding: 0 20px;
+        margin: 20px 5px 0 0px;
     }
     
     .promo-title {
@@ -2016,7 +2247,7 @@ body.menu-open {
     }
 
     .story-container {
-        padding: 15px;
+        padding: 12px;
         gap: 20px;
     }
 
@@ -2071,8 +2302,8 @@ body.menu-open {
     }
     
     .star-icon {
-        width: 14px;
-        height: 14px;
+        width: 12px;
+        height: 12px;
     }
     
     .comment-user {
@@ -2324,9 +2555,6 @@ body.menu-open {
     transform: none;
 }
 
-.booking-image:hover .main-image {
-    transform: scale(1.1);
-}
 
 /* Menambahkan efek hover pada small image */
 .booking-image:hover .small-image {
@@ -2379,7 +2607,7 @@ body.menu-open {
         width: 120px;
     }
 }
-/* Tambahkan style ini di file CSS Anda */
+/* Tambahkan style ini di file CSS Anda page  */
 .titip-kunci {
     max-width: 1200px;
     margin: 0 auto;
@@ -2390,17 +2618,27 @@ body.menu-open {
     background-color: #674c1d;
     color: white;
     padding: 3rem;
-    border-radius: 102px 6px 98px 6px;
+    border-radius: 6px 102px 6px 98px;
     margin-bottom: 2rem;
+    
 }
 
 .info-box h2 {
     margin-bottom: 1rem;
     font-size: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+
+}
+.info-box p {
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
 }
 
 .registration-info {
     text-align: center;
+
 }
 
 .registration-info h2 {
@@ -2444,10 +2682,47 @@ body.menu-open {
     font-weight: bold;
 }
 
+
+
 /* Responsive Design */
+@media screen and (max-width: 792px) {
+    .titip-kunci-header-text-overlay p{
+        font-size: 3rem;
+    }
+
+    .titip-kunci-header-text-overlay img {
+        width: 200px;
+    }
+    
+    
+}
+
 @media screen and (max-width: 768px) {
     .titip-kunci {
         padding: 1rem;
+    }
+
+    .info-box {
+        background-color: #674c1d;
+        color: white;
+        padding: 3rem;
+        border-radius: 6px 102px 6px 98px;
+        margin-bottom: 2rem;
+        
+    }
+    
+    .info-box h2 {
+        font-size: 1.3rem;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        padding: 0px 5px 0px 15px;
+    
+    }
+    .info-box p {
+        font-size: 0.9rem;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 200;
+        padding: 0px 5px 15px 15px;
     }
     
     .info-box, .steps-list li {
@@ -2459,6 +2734,44 @@ body.menu-open {
         width: 30px;
         height: 30px;
     }
+}
+
+@media screen and (max-width: 624px) {
+    .titip-kunci-header-text-overlay p{
+        font-size: 2rem;
+    }
+
+    .titip-kunci-header-text-overlay img {
+        width: 150px;
+    }
+}
+@media screen and (max-width: 457px) {
+    .titip-kunci-header-text-overlay p{
+        font-size: 1rem;
+    }
+
+    .titip-kunci-header-text-overlay img {
+        width: 100px;
+    }
+}
+@media screen and (max-width: 290px) {
+    .titip-kunci-header-text-overlay p{
+        font-size: 0.7rem;
+    }
+
+    .titip-kunci-header-text-overlay img {
+        width: 50px;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .info-box h2 {
+        font-size: 1rem;
+    }
+
+    .info-box p {
+        font-size: 0.7rem;
+    }   
 }
 
 /* Form Section Styles */
@@ -2584,11 +2897,11 @@ body.menu-open {
     flex-direction: row-reverse;
 }
 
-.story-image {
+.story-story-image {
     flex: 1;
 }
 
-.story-image img {
+.story-story-image img {
     width: 100%;
     height: auto;
     border-radius: 20px;
@@ -2596,7 +2909,7 @@ body.menu-open {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.story-content {
+.story-story-content {
     flex: 1;
     padding: 2rem;
     background: white;
@@ -2604,12 +2917,12 @@ body.menu-open {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.story-content h2 {
+.story-story-content h2 {
     margin-bottom: 1rem;
     color: #333;
 }
 
-.story-content p {
+.story-story-content p {
     margin-bottom: 1rem;
     color: #333;
 }

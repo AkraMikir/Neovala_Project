@@ -2,24 +2,33 @@
 function handleNavbarScroll() {
     const navbar = document.querySelector('.navbar');
     const header = document.querySelector('.header');
-    const headerBottom = header.offsetTop + header.offsetHeight;
     const bookNowBtn = document.querySelector('.book-now-container');
+
+    if (!navbar || !header) return;
+
+    const headerBottom = header.offsetTop + header.offsetHeight;
 
     window.addEventListener('scroll', () => {
         if (window.scrollY > headerBottom - navbar.offsetHeight) {
             navbar.classList.add('scrolled');
-            bookNowBtn.classList.add('visible');
+            if (bookNowBtn) {
+                bookNowBtn.classList.add('visible');
+            }
         } else {
             navbar.classList.remove('scrolled');
-            bookNowBtn.classList.remove('visible');
+            if (bookNowBtn) {
+                bookNowBtn.classList.remove('visible');
+            }
         }
     });
 
     // Set initial state
     if (window.scrollY > headerBottom - navbar.offsetHeight) {
         navbar.classList.add('scrolled');
-        bookNowBtn.classList.add('visible');
-    } else {
+        if (bookNowBtn) {
+            bookNowBtn.classList.add('visible');
+        }
+    } else if (bookNowBtn) {
         bookNowBtn.classList.remove('visible');
     }
 }
@@ -62,6 +71,8 @@ function handleBurgerMenu() {
     const navItems = document.querySelectorAll('.nav-links a');
     const closeButton = document.createElement('button');
     
+    if (!burgerMenu || !navLinks || !overlay) return;
+    
     closeButton.innerHTML = '×';
     closeButton.className = 'close-menu-btn';
     navLinks.insertBefore(closeButton, navLinks.firstChild);
@@ -70,12 +81,12 @@ function handleBurgerMenu() {
         const isOpening = !navLinks.classList.contains('active');
         const bookNowBtn = document.querySelector('.book-now-container');
         
-        if (isOpening) {
+        if (isOpening && bookNowBtn) {
             // Ensure Book Now button stays visible if it was visible
             if (bookNowBtn.classList.contains('visible')) {
                 bookNowBtn.style.zIndex = '100';
             }
-        } else {
+        } else if (bookNowBtn) {
             bookNowBtn.style.zIndex = '';
         }
 
@@ -168,7 +179,9 @@ function initializeCarousel() {
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functions
-    initializeCarousel();
+    if (document.querySelector('.carousel')) {
+        initializeCarousel();
+    }
     handleSmoothScroll();
     handleBurgerMenu();
     handleNavbarScroll();
