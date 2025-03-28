@@ -2645,6 +2645,18 @@ body.menu-open {
     color: #674c1d;
     margin-bottom: 2rem;
     font-size: 1.8rem;
+    padding-top: 1rem;
+}
+
+@media screen and (max-width: 570px) {
+    .registration-info h2 {
+        font-size: 1.2rem;
+    }
+}
+@media screen and (max-width: 370px) {
+    .registration-info h2 {
+        font-size: 0.9rem;
+    }
 }
 
 .steps-list {
@@ -2657,6 +2669,9 @@ body.menu-open {
 
 .steps-list li {
     position: relative;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    color: #674c1d;
     padding: 1rem 1rem 1rem 3rem;
     margin-bottom: 1rem;
     background-color: #fff;
@@ -2726,7 +2741,12 @@ body.menu-open {
     }
     
     .info-box, .steps-list li {
-        padding: 1rem;
+        padding: 1rem 1rem 1rem 3 rem;
+    }
+
+    
+    .steps-list li {
+        font-size: 0.8rem;
     }
     
     .steps-list li::before {
@@ -2809,18 +2829,27 @@ body.menu-open {
 .form-group textarea {
     width: 100%;
     padding: 0.8rem;
-    border: none;
     border-radius: 8px;
-    background-color: white;
-    color: #333;
+    background-color: #674c1d;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.form-group input::placeholder {
+    color: white;
 }
 
 .form-group select {
     appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
     background-repeat: no-repeat;
     background-position: right 1rem center;
     background-size: 1em;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #674c1d;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.7);
 }
 
 .form-buttons {
@@ -2899,14 +2928,40 @@ body.menu-open {
 
 .story-story-image {
     flex: 1;
+    max-width: 500px; /* Menambahkan batasan lebar maksimum */
+    max-height: 300px; /* Menambahkan batasan tinggi maksimum */
+    overflow: hidden;
 }
 
 .story-story-image img {
     width: 100%;
-    height: auto;
+    height: 300px; /* Mengatur tinggi tetap */
     border-radius: 20px;
     object-fit: cover;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .story-story-image {
+        max-width: 100%;
+        max-height: 350px;
+    }
+
+    .story-story-image img {
+        width: 350px;
+        height: 350px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .story-story-image {
+        max-height: 200px;
+    }
+
+    .story-story-image img {
+        height: 200px;
+    }
 }
 
 .story-story-content {
@@ -3098,3 +3153,79 @@ body.menu-open {
         font-size: 1.3rem;
     }
 }
+
+/* Styling untuk options */
+.form-group select option {
+    background-color: #674c1d;
+    color: white;
+    padding: 1rem;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* Styling untuk select saat difokuskan */
+.form-group select:focus {
+    outline: none;
+    border-color: white;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+/* Styling untuk select saat ada option yang dipilih */
+.form-group select:not([value=""]) {
+    color: white;
+}
+
+/* Styling untuk disabled option */
+.form-group select option:disabled {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Styling untuk option yang dipilih dan hover */
+.form-group select option:checked,
+.form-group select option:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    cursor: pointer;
+}
+
+/* Menghilangkan highlight biru default */
+.form-group select option:hover,
+.form-group select option:focus,
+.form-group select option:active {
+    background: #674c1d !important;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* Styling untuk option saat di-highlight */
+.form-group select option::selection {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+}
+
+.form-group select option::-moz-selection {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+}
+
+/* Styling untuk option saat hover dan select */
+.form-group select option:hover,
+.form-group select option:focus,
+.form-group select option:active,
+.form-group select option:checked {
+    background-color: #8b6929 !important;
+    color: white !important;
+}
+
+/* Menghilangkan highlight biru */
+.form-group select:focus option:checked {
+    background: #8b6929 !important;
+    color: white !important;
+}
+
+.form-group textarea::placeholder {
+    color: white;
+}
+

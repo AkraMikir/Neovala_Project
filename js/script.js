@@ -38,8 +38,16 @@ function handleSmoothScroll() {
     const navLinks = document.querySelectorAll('.nav-links a, .logo-left a');
     const navHeight = document.querySelector('.navbar').offsetHeight;
 
-    function smoothScrollTo(targetId) {
+    function smoothScrollTo(targetId, href) {
+        // Jika href mengandung .html, ini adalah link ke halaman lain
+        if (href.includes('.html')) {
+            window.location.href = href;
+            return;
+        }
+
         const targetSection = document.querySelector(targetId);
+        if (!targetSection) return; // Jika target section tidak ditemukan, hentikan fungsi
+
         let targetPosition;
         
         if (targetId === '#home') {
@@ -56,9 +64,15 @@ function handleSmoothScroll() {
 
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            
+            // Jika ini adalah link ke halaman lain (mengandung .html), biarkan browser menanganinya
+            if (href.includes('.html')) {
+                return;
+            }
+            
             e.preventDefault();
-            const targetId = link.getAttribute('href');
-            smoothScrollTo(targetId);
+            smoothScrollTo(href, href);
         });
     });
 }
@@ -103,14 +117,22 @@ function handleBurgerMenu() {
     // Event listener untuk navlinks
     navItems.forEach(item => {
         item.addEventListener('click', (e) => {
+            const href = item.getAttribute('href');
+            
+            // Jika ini adalah link ke halaman lain (mengandung .html), biarkan browser menanganinya
+            if (href.includes('.html')) {
+                return;
+            }
+            
             e.preventDefault();
-            const targetId = item.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
+            const targetSection = document.querySelector(href);
+            if (!targetSection) return; // Jika target section tidak ditemukan, hentikan fungsi
+
             const navHeight = document.querySelector('.navbar').offsetHeight;
             
             // Scroll to target
             let targetPosition;
-            if (targetId === '#home') {
+            if (href === '#home') {
                 targetPosition = 0;
             } else {
                 targetPosition = targetSection.offsetTop - navHeight;
